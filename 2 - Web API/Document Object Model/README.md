@@ -1,6 +1,6 @@
 # Document Object Model (DOM)
 
-Le DOM ne fait pas partie de Javascript. Chaque navigateur possède sa propre API pour manipuler le DOM, la **Web API**.
+Le DOM ne fait pas partie de Javascript. C'est une **API Web**. Chaque navigateur possède ses propres APIs pour manipuler le DOM.
 C'est une structure hiérarchique en arbre (Tree) qui représente le document HTML et dont chaque branche constitue un noeud (Node).
 
 ## Architecture hiérarchique
