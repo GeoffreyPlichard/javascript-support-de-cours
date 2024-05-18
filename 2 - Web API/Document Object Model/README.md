@@ -44,3 +44,12 @@ Par exemple:
 ```
 
 Le paragraphe dans cet exemple fait partie du DOM, mais est **retiré du Render Tree**, donc invisible à l'écran.
+
+# Le cas des Pseudo Elements
+
+Les pseudo éléments sont des sélecteurs CSS qui peuvent cibler des éléments HTML pour manipuler une partie de l'élement sélectionné.
+Ces élements ne font pas partie du DOM. **Il font partie du CSSOM et ne peuvent donc pas être manipulés par Javascript**.
+
+# Où peut-on voir le DOM ?
+
+Nulle part ! La représentation la plus fiable est dans le Developer Tool des navigateurs, qui rajoute en plus certains pseudo-élements.
