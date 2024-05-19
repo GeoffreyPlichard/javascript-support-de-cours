@@ -79,3 +79,29 @@ Retourné par getElementsByClassName()
 
 Un HTMLCollection n'est pas un array, on ne peut pas y accéder avec forEach.
 Par contre une boucle for peut être utilisée.
+
+## NodeList
+
+Retourné par querySelectorAll()
+
+On peut utiliser le forEach avec le type NodeList.
+
+# --------------------
+
+# Nodes
+
+# --------------------
+
+Un "node" (noeud) est un item de la représentation de l'arbre HTML.
+
+Les nodes peuvent inclurent d'autres nodes, du contenu ou des attributs.
+
+Les différents types de nodes sont:
+
+- Element nodes (code: 1): Qui représente un élement HTML (div, span...)
+
+- Text nodes (code: 3): Par exemple, le texte présent dans un paragraphe ou les espaces, retours à la ligne...
+
+- Comment nodes (code 8): Les commentaires dans le HTML
+
+- Document Fragment Node (code 11): Une portion du DOM extrait pour former un "fragment"
