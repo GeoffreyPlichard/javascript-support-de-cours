@@ -79,12 +79,16 @@ Retourné par getElementsByClassName()
 
 Un HTMLCollection n'est pas un array, on ne peut pas y accéder avec forEach.
 Par contre une boucle for peut être utilisée.
+Il retourne uniquement les élements de type Element Node.
+Il est aussi **dynamique** ou **mutable**, les élements sont mis à jour si ils sont ajoutés ou modifiés.
 
 ## NodeList
 
 Retourné par querySelectorAll()
 
 On peut utiliser le forEach avec le type NodeList.
+Il retourne tous les types de Node (text, comment, element...)
+Il est **statique** ou **immutable** et ne peut donc pas être modifié.
 
 # --------------------
 
@@ -105,3 +109,11 @@ Les différents types de nodes sont:
 - Comment nodes (code 8): Les commentaires dans le HTML
 
 - Document Fragment Node (code 11): Une portion du DOM extrait pour former un "fragment"
+
+### Comment visualiser un node:
+
+Pour visualiser un node, il suffit de sélectionner un élement dans l'onglet "Elements", et ensuite taper $0 dans la console:
+
+![alt text](./img/find-node.png)
+
+![alt text](./img/find-node2.png)
