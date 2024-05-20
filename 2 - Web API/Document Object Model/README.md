@@ -16,6 +16,11 @@ Pour visualier le document dans le console:
 
 `console.dir(document);`
 
+window.document n'est pas vraiment le "root" en réalité. Il est créé à partir du HTMLDocument dont le premier élement est le HTML.
+Pour accéder au document html:
+
+`let html = document.documentElement;`
+
 ## Forms
 
 Pour accéder aux formulaire, nous pouvons utiliser la méthode fournie par l'objet document:
@@ -142,3 +147,29 @@ h1[0].children // Retourne [] car aucun enfant
 h1[0].firstChild // Retourne le texte du H1
 h1[0].lastChild // Retourne le texte aussi !
 ```
+
+## Manipuler le DOM
+
+Nous pouvons créer des élements avec la méthode "createElement"
+
+`let p = document.createElement('p')`
+
+L'élement est créé mais pas ajouté au DOM. Pour ce faire il faut lui trouver un parent et l'attacher à ce parent via la méthode appendChild().
+
+```
+let body = document.querySelector('body');
+body.appendChild(p);
+
+```
+
+Pour ajouter du texte au paragraphe:
+
+```
+let p = document.createElement('p');
+p.textContent = "Hello World";
+```
+
+Nous pouvons utiliser aussi la méthode innerHTML mais il y a un risque de faille XSS car du Javascript inline peut y être ajouté tandis que textContent supprime les balises HTML.
+
+Pour insérer un élement par rapport aux siblings, nous pouvons utiliser insertBefore().
+Il n y a pas de méthode insertAfter(), pour ce faire nous pouvons cibler le nextElementSibling pour faire un insertBefore().
