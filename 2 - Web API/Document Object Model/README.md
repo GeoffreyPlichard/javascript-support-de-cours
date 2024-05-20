@@ -198,8 +198,16 @@ Sa hiérarchie dans le DOM sera:
 
 ## Dom Extension
 
-Utilisé par PrototypeJS ou Mootools
+Utilisé par PrototypeJS ou Mootools, il permet d'ajouter des fonctionnalités au DOM.
 
-jQuery utilise un object Wrapper ce qui est mieux.
-Il créé un nouvel objet qui fait référence à l'original en ajoutant des fonctionnalités dans le wrapper
-TODO
+```
+Element.prototype.red = function(){
+  this.style.color = 'red';
+}
+
+let p = document.createElement('p');
+p.red();
+```
+
+Modifier le prototype du DOM n'est pas une bonne pratique.
+Mieux vaut utiliser la méthode utilisé par jQuery, qui encapsule les objets dans un wrapper et qui fait référence à l'original en ajoutant des fonctionnalitée.
