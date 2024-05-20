@@ -117,3 +117,28 @@ Pour visualiser un node, il suffit de sélectionner un élement dans l'onglet "E
 ![alt text](./img/find-node.png)
 
 ![alt text](./img/find-node2.png)
+
+## Naviguer dans le DOM
+
+Exemple de méthodes pour naviguer dans le DOM:
+
+- lastChild / lastElementChild
+- firstChild / firstElementChild
+- parentNode
+- nextSibling / nextElementSibling
+- previousSibling / previousElementSibling
+- children (retourne HTMLCollection)
+- childNodes (retourne NodeList avec tous les types de nodes)
+
+Ces méthodes peuvent être chainés:
+
+`h2.parentNode.parentNode.nextSibling`
+
+Par exemple, pour accéder au texte d'un H1:
+
+```
+let h1 = document.getElementByTagName('h1'); // Retourne HTMLCollection
+h1[0].children // Retourne [] car aucun enfant
+h1[0].firstChild // Retourne le texte du H1
+h1[0].lastChild // Retourne le texte aussi !
+```
