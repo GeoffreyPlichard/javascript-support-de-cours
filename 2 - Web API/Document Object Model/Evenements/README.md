@@ -29,3 +29,11 @@ let btn = document.querySelector('button);
 btn.addEventListener('click', handler);
 
 ```
+
+## Question performance ?
+
+Les listeners ne font rien jusqu'à ce qu'un event soit déclenché. Il n y a donc pas d'utilisation de ressources en attendant.
+
+## D'où viennent les évènements ?
+
+Les évènements viennent de l'interface EventTarget, dont hérite chaque Node. Il permet aux nodes d'utiliser les évènements grâce à la méthode addEventListener.

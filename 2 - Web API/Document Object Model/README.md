@@ -173,3 +173,33 @@ Nous pouvons utiliser aussi la méthode innerHTML mais il y a un risque de faill
 
 Pour insérer un élement par rapport aux siblings, nous pouvons utiliser insertBefore().
 Il n y a pas de méthode insertAfter(), pour ce faire nous pouvons cibler le nextElementSibling pour faire un insertBefore().
+
+## Hierarchie
+
+Prenons l'exemple d'un paragraphe:
+
+`<p></p>`
+
+Sa hiérarchie dans le DOM sera:
+
+- Dom Object: L'objet récupéré dans le DOM.
+
+- HTMLParagraphElement: Contient les propriétés spécifiques à un paragraphe
+
+- HTMLElement: Il contient les éléments HTML.
+
+- Element: Il contient les élément sans les espace etc... On peut y accéder avec nextElementSibling, children ou querySelector
+
+- Node: Permet de naviguer dans le DOM avec des méthodes telles que parentNode, childNode ou nextSibling. Il contient aussi les textes, espaces et retours à la ligne d'un élément
+
+- EventTarget: Interface qui héberge les évènements et les méthodes telles que getElementById
+
+- Object: La racine de chaque élement qui est l'équivalent de Object en Javascript
+
+## Dom Extension
+
+Utilisé par PrototypeJS ou Mootools
+
+jQuery utilise un object Wrapper ce qui est mieux.
+Il créé un nouvel objet qui fait référence à l'original en ajoutant des fonctionnalités dans le wrapper
+TODO
