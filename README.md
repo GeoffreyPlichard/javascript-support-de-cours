@@ -4,6 +4,8 @@ Cours de Javascript de débutant à avancé
 
 # Contenu
 
+## ------------
+
 ## Fondamentaux
 
 ## ------------
@@ -13,6 +15,8 @@ Cours de Javascript de débutant à avancé
 ### Asynchrone avec JS
 
 ### Stockage Mémoire
+
+## -------
 
 ## Web API
 
