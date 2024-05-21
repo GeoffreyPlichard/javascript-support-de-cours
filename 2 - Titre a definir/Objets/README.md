@@ -11,4 +11,11 @@ const person = {
 }
 ```
 
+Les fonctions sont aussi des objets.
+ex:
+
+function test() {
+console.log('...');
+}
+console.dir(test)
 TODO...
