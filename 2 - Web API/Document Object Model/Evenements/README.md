@@ -54,7 +54,7 @@ Ensuite le DOM remonte chaque élément jusqu'au Window et déclenche chaque év
 
 Pour quoi il y a 2 phases ?
 
-#### Un peu d'histoire
+#### Un peu d'Histoire
 
 A la base, les développeurs de Netscape et Microsoft n'avaient pas le même modèle de gestion du flux de propagation.
 
