@@ -65,3 +65,10 @@ Dans la console:
 let doctor = {};
 let doctor = new Object(); // même résultat.
 ```
+
+On ne peut pas accéder directement à cet objet [[Prototype]] car c'est une propriété interne (**Internal Property** ou **Internal Slot**).
+Pour ce faire il faut utiliser:
+
+`doctor.__proto__;`
+ou
+`Object.getPrototypeOf(doctor);`

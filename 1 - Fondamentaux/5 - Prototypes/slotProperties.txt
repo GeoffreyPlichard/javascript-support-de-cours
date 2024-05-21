@@ -1,0 +1,105 @@
+Hidden Property vs Internal Property vs Internal Slot
+To make us more confused, [[Prototype]] is called different things.
+
+In the previous lecture I called it a “hidden property”.
+
+It is also known as an “internal property”.
+
+But it is also known more officially as .... wait for it ... an “internal slot”.
+
+😡 I know, I feel your frustration!
+
+But don't stress. These are all the same thing. But hey, strictly speaking, if you read the ECMAScript specification, they call the [[Prototype]] property an internal slot.
+
+Why did they call it this? 
+
+And why did ECMAScript decide to make these internal slots/methods hidden? 
+
+Let me explain …
+
+How does ECMAScript view objects? 
+ECMAScript says that every object consists of:
+
+Internal slots, which are storage locations that are not accessible from JavaScript code (ding ding ding … the [[Prototype]]); and
+
+Internal methods, that define the actual semantics of how objects work behind the scenes (for example, the [[GetPrototypeOf]] is an internal method. These methods are also not accessible directly from JavaScript code); and
+
+A collection of properties. Each property associates a key with attributes (let's ignore this, for now)
+
+Why does ECMAScript have internal slots/methods?
+As I mentioned in the previous lecture, hidden properties are there to define an objects behavior, formally.
+
+Heh 🤷‍♂️?
+
+Okay let me take a step back. Each object must behave in a certain way.
+
+Heh 🤷‍♂️?
+
+I mean that behind the scenes, when you create an object, certain “things” need to happen. For example, the JavaScript engine needs to create an object and place it into memory, it needs to determine its type, it needs to add certain properties and methods to it, it needs to determine where it has inherited from, etc.
+
+These processes are very complex and in order for all this to work, ECMAScript defines internal slots & methods to each object. The JavaScript engine then uses these slots & methods to set up the objects correctly.
+
+ECMAScript's direct quote –
+
+Each object in an ECMAScript engine is associated with a set of internal methods that defines its runtime behaviour. These internal methods are not part of the ECMAScript language.
+
+Bottom line: internal slots/methods (aka: hidden properties) are added to the ECMAScript specification purely to make objects “work”. They are not intended to be accessible by us and for this reason they are not part of the JavaScript language.
+
+
+
+But hang on, we can access internal slots, can’t we?
+Kind of.
+
+Let me give you an example.
+
+The [[Prototype]] is an internal data slot. This means it’s hidden. This means we can’t access it from our code.
+
+But there’s another internal method called [[GetPrototypeOf]]. But ding ding ding ... I see those square brackets [] meaning its also hidden. This means we can’t access it from code either 😖.
+
+So what can we do?
+
+Well, the kind people at ECMAScript decided give us an ordinary JavaScript method called getPrototypeOf(). It takes an object as an argument, and returns us the prototype which has to be an object or null.
+
+You may be a little dizzy right now 😵.
+
+You may be thinking, "Clyde, what is the use of having internal slots/methods if we can just call the getPrototypeOf() method?"
+
+Great question.
+
+The short answer is that the internal slots are used by the JavaScript engine when creating an object. For example, when you execute Object.getPrototypeOf(obj) method with obj being the object whose prototype needs to be accessed, this is what happens behind the scenes:
+
+The JavaScript engine calls the [[GetPrototypeOf]] internal method of the obj
+
+The [[GetPrototypeOf]] internal method will return the value of [[Prototype]] internal slot of the object that contains the prototype.
+
+Can you begin to see how this all fits together?
+
+By now you can also probably see that ECMAScript does not want us to mess around with these important internal slots & methods. That is why they are hidden from our code. 
+
+Recap on the [[Prototype]] property
+We know that the [[Prototype]] is an internal slot.
+
+Specifically, it is an internal data slot, holding a reference to where the object’s default properties and methods have been inherited from.
+
+ECMAScript says –
+
+All ordinary objects have an internal slot called [[Prototype]]. The value of this internal slot is either null or an object and is used for implementing inheritance.
+
+So, the [[Prototype]] stores the prototype of an object. It can be accessed via Object.getPrototypeOf() and you can set an objects prototype via the Object.setPrototypeOf() method.
+
+Conclusion
+This can all be rather confusing, for now.
+
+If you can take away the below 6 points from these past few lectures, I’ve done my job:
+
+Since ECMAScript 2015 was introduced, all JavaScript objects have internal slots & methods.
+
+They are denoted by square brackets [[ ]].
+
+We can’t access these internal slots/methods directly in code. For this reason, some developers call them pseudo properties/methods.
+
+They are necessary to make the JavaScript language work – they are there to ensure objects are correctly set up by the JavaScript engine.
+
+ECMAScript does not want us to mess around with these important slots & methods. That is why they are hidden from our code.
+
+In order to give developers the power (mwahahaha) to manipulate objects, ECMAScript have given us methods that we can use in code. For example, to access an objects internal data slot [[Prototype]], ECMAScript has given us access to the public API method called getPrototypeOf() method.

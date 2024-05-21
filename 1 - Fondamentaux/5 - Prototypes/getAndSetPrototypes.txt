@@ -1,0 +1,43 @@
+Getting and setting prototypes
+Getting and setting prototypes is a common task you'll be faced with.
+
+Let me avoid beating around the bush and just tell you how to get a prototype of an object, and how to set one.
+
+
+
+Picture of old fashioned wagon, saying that we used to set and get prototypes with __proto__
+Get prototype
+The best way to examine a prototype is to use the getPrototypeOf() method, like this:
+
+Object.getPrototypeOf(obj). It only takes 1 argument and obj is the object who's prototype you want to examine.
+
+But let me ask you this - does obj have to be an object? In the olden days, the answer was yes. But today, since ES6, the parameter will be coerced to an object and won't throw an error.
+
+That's why this works: Object.getPrototypeOf('string'); // returns String
+
+Setting the prototype - 4 ways
+Setting an object's prototype is a little more complex than getting a prototype.
+
+The reason I say this, is because there are numerous ways to set an object's prototype.
+
+#1 One way to set a prototype of an object, after you've created your object, is to use the setPrototypeOf() method. This method was introduced in 2015 by ECMAScript 6 (ES6), so it's been around for a while now.
+
+It's syntax looks like this: Object.setPrototypeOf(obj, prototype). It takes 2 arguments. The first argument is the object that is inheriting properties & methods. The second argument is the object you want it to inherit from.
+
+Bottom line: this method exists in JavaScript as a way to dynamically change the prototype of an existing object. However, it's important to note that modifying an object's prototype dynamically can have performance implications, as it may affect the object's internal structure.
+
+(spoiler alert, you'll see later in the course that sometimes we have to use the Object.setPrototypeOf() method when dealing with functions)
+
+But wait ... there's more!
+
+Image saying "wait, there's more"
+#2 Another way, and arguably a better way to set an object's prototype, is during object creation using the Object.create() method.
+
+For example, to set a prototype this way would look something like this: let obj = Object.create(prototype, properties);. Using Object.create() provides clear and explicit prototype assignment without modifying the existing object's [[Prototype]] property or resorting to less performant methods.
+
+Bottom line: Object.create() is commonly used for creating new objects with a specified prototype. It does not provide a direct mechanism to modify the prototype of an already created object - that's why we have the Object.setPrototypeOf() method. In most cases, using Object.create() or constructor functions to set the prototype during object creation is the preferred approach.
+
+But wait ... there's more!
+
+Image saying "wait, there's more"
+#3. Finally, another way to set prototypes is via factory functions and classes. Doing it this way means that the JavaScript engine will automatically set the prototype of created objects to the prototype of the constructor or class. Therefore, when working with constructor functions or classes, you don't need to explicitly set the prototype.
