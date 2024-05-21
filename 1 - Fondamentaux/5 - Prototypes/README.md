@@ -8,8 +8,8 @@ Les prototypes permettent de faire de l'héritage par prototype (**Prototypal In
 
 Javascript est donc un **langage orienté objet**.
 
-Tous les objets ont un objet "prototype" [[Prototype]] qui leur est associé automatiquement à leur création. C'est une référence au parent.
-On peut considérer le prototype comme une boite à outils livrée avec l'objet.
+Tous les objets ont un objet "prototype" [[Prototype]] qui leur est associé automatiquement à leur création. Cet objet fait référence à un autre objet et créé ainsi une chaine.
+Le premier prototype peut être considéré comme une boite à outils livrée avec l'objet.
 Une fois l'objet créé, il aura accès aux méthodes de la boite à outils (le prototype).
 
 ```
@@ -48,3 +48,20 @@ Les fonctions sont des objets particuliers dans le sens où ils héritent de deu
 ## Classes ES6
 
 Javascript ES6 permet d'utiliser le mot clé class pour ressembler aux autres langages. Mais ce n'est qu'un **Syntactic Sugar** (une extension de la syntaxe pour la rendre plus lisible) et à la fin, on obtient toujours de l'héritage par prototype.
+
+## [[Prototype]]
+
+Quand un objet est créé, Javascript créé un lien vers son prototype ([[Prototype]]) en mémoire. Et celui là sera le prototype Object.
+Ce prototype "root" à lui un prototype qui vaut "null".
+Notre premier objet est donc créé **à partir du constructeur de Object**.
+
+![alt text](./img/prototype.png)
+
+Dans la console:
+
+![alt text](./img/prototype2.png)
+
+```
+let doctor = {};
+let doctor = new Object(); // même résultat.
+```
