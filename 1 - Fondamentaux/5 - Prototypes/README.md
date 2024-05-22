@@ -159,3 +159,13 @@ Nous pouvons aussi créer une chaine de prototype (**Prototype Chain**) de cette
 ## Shadowing
 
 Si on définie le nom d'une propriété ou d'une méthode qui existe déjà dans un prototype parent, ces dernières seront surchargées (**overriding**). Javascript n'exécutera pas les propriétés ou méthodes parentes.
+
+## Boucler sur un objet
+
+Si on boucle sur un objet avec for...in, nous avons accès aussi aux propriétés hérités:
+
+```
+for (const property in doctor) {
+  console.log(property);
+}
+```
