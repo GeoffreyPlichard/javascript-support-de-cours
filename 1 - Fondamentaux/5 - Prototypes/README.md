@@ -194,3 +194,27 @@ console.log(doctor); // {name: "Dr Strange}
 ```
 
 La propriété "secretSalary" n'est pas visible.
+
+## Boucler sur les objets
+
+Contrairement aux tableaux (Array), les moyens sont assez limités pour boucler sur un objet. On ne peut pas utiliser map() ou forEach().
+
+La principale méthode est for...in comme ci-dessus. L'inconvénient est que toutes les propriétés présentes dans la chaine de prototype seront retournées.
+
+Une des solutions est de vérifier si l'objet possède une propriété.
+
+```
+for (const prop in doctor) {
+  if (doctor.hasOwnProperty(prop)) {
+    console.log(prop);
+  }
+}
+```
+
+Deux méthodes plus moderne ont été introduites avec ES6.
+Il s'agit de Object.keys(), Object.values().
+ES8 a introduit Object.entries().
+
+```
+let keys = Object.keys(doctor); // Return Array
+```
