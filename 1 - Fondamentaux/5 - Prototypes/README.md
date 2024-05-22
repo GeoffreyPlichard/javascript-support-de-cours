@@ -162,10 +162,35 @@ Si on définie le nom d'une propriété ou d'une méthode qui existe déjà dans
 
 ## Boucler sur un objet
 
-Si on boucle sur un objet avec for...in, nous avons accès aussi aux propriétés hérités:
+Si on boucle sur un objet avec for...in, nous avons accès aussi aux propriétés hérités (sauf si elles ne sont pas **emunerable** )
 
 ```
 for (const property in doctor) {
   console.log(property);
 }
 ```
+
+## Enumerable
+
+Toutes les propriétés possèdent un attribut "enumerable" qui permet de savoir si la propriété peut être lue.
+Les propriétés déclarés dans un objet sont toutes énumérables par défaut.
+D'autres propriétés "haut niveau" comme toString ou hasOwnProperty sont à false.
+
+`Object.toString.propertyIsEmunerable() // false`
+
+Avoir des propriétés non émunérable permet de ne pas itérer dessus.
+
+```
+let doctor = {
+  name: "Dr Strange"
+}
+
+Object.defineProperty(doctor, 'secretSalary', {
+  value: 300000,
+  enumerable: false
+});
+
+console.log(doctor); // {name: "Dr Strange}
+```
+
+La propriété "secretSalary" n'est pas visible.
