@@ -73,6 +73,12 @@ Pour ce faire il faut utiliser:
 ou
 `Object.getPrototypeOf(doctor);`
 
+### Pointer vers un autre prototype
+
+![alt text](./img/link-proto.png)
+
+![alt text](./img/link-proto2.png)
+
 ## Object
 
 Presque tous les objets sont des instances de Object. Les types primitifs ne sont pas des instances de Object mais Javascript créé un wrapper autour, ce qui permet d'avoir accès au méthodes de Object.
