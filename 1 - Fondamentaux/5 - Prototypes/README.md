@@ -152,6 +152,10 @@ let doctor = Object.create(verifiedMember, {
 
 Mais cette méthode et verbeuse ce qui peut poser problème si l'application prend de l'ampleur.
 
-Nous pouvons aussi créer une chaine de prototype (Prototype Chain) de cette manière:
+Nous pouvons aussi créer une chaine de prototype (**Prototype Chain**) de cette manière:
 
 ![alt text](./img/prototype-chain.png)
+
+## Shadowing
+
+Si on définie le nom d'une propriété ou d'une méthode qui existe déjà dans un prototype parent, ces dernières seront surchargées (**overriding**). Javascript n'exécutera pas les propriétés ou méthodes parentes.
