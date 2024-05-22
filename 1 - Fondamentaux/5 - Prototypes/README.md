@@ -103,3 +103,18 @@ Dans la version originale de Javascript, les valeurs étaient stockées en 32 oc
 Les 3 premiers octets représentaient le type (000 pour tous les objets) et les octets restant la valeur.
 Comme "null" représente rien ou "void", ses 32 octets sont 0.
 Et donc aujourd'hui, quand l'interpréteur Javascript lit les 3 premiers octets (000), il retourne sont type en tant qu'objet.
+
+## Les cas des primitifs
+
+Quand on créé un type string (ou autre primitif), Javascript stocke la variable dans la mémoire Stack (Voir la section stockage mémoire).
+Nous n'avons donc pas accès à son prototype car il n'en a pas.
+
+`let name = "John";`
+
+Mais, quand on traite un primitif comme un objet, Javascript va en interne créer un wrapper temporaire (basé sur son type pour exposer uniquement les méthodes nécessaires) et le détruire juste après son utilisation (question de performance).
+
+On peut aussi créer un objet explicitement. Un objet sera créé avec chaque lettre correspondant à une paire clé: valeur.
+
+`let name = new String("John");`
+
+![alt text](./img/string2.png)

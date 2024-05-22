@@ -12,6 +12,7 @@ Les **Primitive Types** (types primitifs: String, Number, Boolean, Null, Undefin
 Quand trop d'élements sont ajoutés dans la stack, après une boucle infinie par exemple, la mémoire est surchargée, c'est ce qu'on appelle **Stack Overflow**
 
 Les **Reference Types** (types "objets" ou "référencés": Array, Function, Object). Cest objets n'ont pas de valeur fixe, il leur faut donc un espace plus large. Il **sont donc stockés dans le Memory Heap** ("tas de mémoire") et on y **accède par référence**, et non directement comme les types primitifs.
+Plus précisemment, l'adresse mémoire est stockée dans la Stack et pointe vers la structure de l'objet qui est stockée dans le Heap.
 
 ![alt text](./img/memory.png)
 
