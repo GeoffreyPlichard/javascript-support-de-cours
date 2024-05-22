@@ -45,6 +45,13 @@ Les fonctions sont des objets particuliers dans le sens où ils héritent de deu
 
 ![alt text](./img/function.png)
 
+Quand un objet est créé, le moteur Javascript lui ajoute [[Prototype]] automatiquement.
+Celui là pointera vers le prototype (pas [[Prototype]] !) de la fonction qui l'a créé (le prototype de la fonction Object() si on ne précise pas).
+
+![alt text](./img/object-function.png)
+
+![alt text](./img/object-function2.png)
+
 ## Classes ES6
 
 Javascript ES6 permet d'utiliser le mot clé class pour ressembler aux autres langages. Mais ce n'est qu'un **Syntactic Sugar** (une extension de la syntaxe pour la rendre plus lisible) et à la fin, on obtient toujours de l'héritage par prototype.
@@ -54,6 +61,7 @@ Javascript ES6 permet d'utiliser le mot clé class pour ressembler aux autres la
 Quand un objet est créé, Javascript créé un lien vers son prototype ([[Prototype]]) en mémoire. Et celui là sera le prototype Object.
 Ce prototype "root" à lui un prototype qui vaut "null".
 Notre premier objet est donc créé **à partir du constructeur de Object**.
+Plus précisemment, le [[Prototype]] pointe vers le prototype du constructeur de la fonction (pas [[Prototype]], voir la section fonctions).
 
 ![alt text](./img/prototype.png)
 
@@ -72,12 +80,6 @@ Pour ce faire il faut utiliser:
 `doctor.__proto__;`
 ou
 `Object.getPrototypeOf(doctor);`
-
-### Pointer vers un autre prototype
-
-![alt text](./img/link-proto.png)
-
-![alt text](./img/link-proto2.png)
 
 ## Object
 
@@ -124,3 +126,32 @@ On peut aussi créer un objet explicitement. Un objet sera créé avec chaque le
 `let name = new String("John");`
 
 ![alt text](./img/string2.png)
+
+## Prémisses de l'héritage
+
+On peut faire pointer un prototype vers un autre objet:
+
+![alt text](./img/link-proto.png)
+
+![alt text](./img/link-proto2.png)
+
+Dans cet exemple, on modifie le prototype d'un objet existant, ce qui n'est pas la manière la plus performante car Javascript doit casse la chaine de prototype existante et en recréer une nouvelle.
+Une méthode plus efficace est de faire ça à la création d'un objet:
+
+```
+let verifiedMember = {
+  verified: true
+};
+
+let doctor = Object.create(verifiedMember, {
+  name: {
+    value: "Dr Strange"
+  }
+});
+```
+
+Mais cette méthode et verbeuse ce qui peut poser problème si l'application prend de l'ampleur.
+
+Nous pouvons aussi créer une chaine de prototype (Prototype Chain) de cette manière:
+
+![alt text](./img/prototype-chain.png)
