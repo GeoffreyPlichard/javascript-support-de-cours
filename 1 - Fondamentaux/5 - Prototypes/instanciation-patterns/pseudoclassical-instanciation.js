@@ -1,6 +1,10 @@
 function Person(name, age) {
-  this.name = name;
-  this.age = age;
+  this.name = name; // Specific properties in constructor function
+  this.age = age;   // are unique to instances
+}
+
+Person.prototype.greeting = function() { // Methods in prototype are shared
+  console.log(`Hi Im ${this.name}`);    // between instances
 }
 
 let person = new Person("John", 30);

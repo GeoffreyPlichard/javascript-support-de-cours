@@ -218,3 +218,8 @@ ES8 a introduit Object.entries().
 ```
 let keys = Object.keys(doctor); // Return Array
 ```
+
+## Arrow Functions
+
+Les **Arrow Functions** ne peuvent pas être utilisées avec le mot-clé "new" pour créer un objet car ces fonctions n'ont pas de **[[Construct]] property**.
+Cette propriété déclenche le processus de création du "this".
