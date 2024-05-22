@@ -72,3 +72,34 @@ Pour ce faire il faut utiliser:
 `doctor.__proto__;`
 ou
 `Object.getPrototypeOf(doctor);`
+
+## Object
+
+Presque tous les objets sont des instances de Object. Les types primitifs ne sont pas des instances de Object mais Javascript créé un wrapper autour, ce qui permet d'avoir accès au méthodes de Object.
+
+Tous les data types complexes (Array, Function) héritent de Object.prototype.
+Les primitifs n'ont pas de prototypes, mais Javascript en interne, créé un wrapper autour de ces types primitifs, ce qui leur donne accès aussi au prototype de Object.
+
+Object est lui même une fonction.
+String(), Number() ou Boolean() sont aussi des fonctions qui wrappent ces mêmes types primitifs.
+
+![alt text](./img/object.png)
+
+On peut d'ailleur les exécuter pour accéder à leur prototype. Prototype qui pointe vers l'objet global.
+
+![alt text](./img/object2.png)
+
+## Le cas de Null
+
+Null est particulier dans le sens où il est considéré comme un type primitif, mais si on vérifie son type, on verra qu'il est de type object mais n'est pas une instance de Object...
+
+![alt text](./img/null.png)
+
+La version courte est qu'il s'agit d'un bug dans Javascript.
+
+La version longue est celle-ci:
+
+Dans la version originale de Javascript, les valeurs étaient stockées en 32 octets.
+Les 3 premiers octets représentaient le type (000 pour tous les objets) et les octets restant la valeur.
+Comme "null" représente rien ou "void", ses 32 octets sont 0.
+Et donc aujourd'hui, quand l'interpréteur Javascript lit les 3 premiers octets (000), il retourne sont type en tant qu'objet.
