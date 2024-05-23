@@ -223,3 +223,33 @@ let keys = Object.keys(doctor); // Return Array
 
 Les **Arrow Functions** ne peuvent pas être utilisées comme constructeur avec le mot-clé "new" pour créer un objet car ces fonctions n'ont pas de **[[Construct]] property**.
 Cette propriété déclenche le processus de création du "this".
+
+## \_\_PROTO\_\_ (Dunder Proto)
+
+\_\_PROTO\_\_ et [[Prototype]] font référence à la même chose. Dunder proto est simplement une manière d'accéder au [[Prototype]] de l'objet global. C'est un getter/setter pour celui-ci.
+
+![alt text](./img/dunder-proto.png)
+
+### D'où vient le Dunder Proto
+
+Le \_\_PROTO\_\_ est le même que constructor.prototype.
+
+![alt text](./img/dunder-proto2.png)
+
+Le Dunder Proto a été inventé par Firefox parce que les développeurs n'avaient pas suffisamment de contrôle sur la manière d'accéder ou modifier un prototype.
+L'utilisation de cet objet est **quasi deprecated** et la seule manière "acceptable" de l'utiliser aujourd'hui est à la création d'un objet litéral, quand on veut créer le prototype de l'objet. (Voir annexe B ECMAScript).
+Exemple, si on veut créer une instance de Parent:
+
+```
+let literalObjectCreation = {
+  name: "Test",
+  __proto__: Parent.prototype
+};
+```
+
+Ici, la façon recommandée:
+
+`let obj = Object.create(Parent.prototype);`
+
+Comme on peut le voir ci-dessus, d'autres méthodes ont été introduites: Object.create() ou Object.setPrototypeOf().
+Comme il existe d'autres méthodes plus modernes de faire ça, le mieux est de ne plus utiliser Dunder Proto
