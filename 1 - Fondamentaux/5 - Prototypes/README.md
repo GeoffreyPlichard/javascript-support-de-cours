@@ -278,3 +278,19 @@ let person = {
 ```
 
 Cette méthode est deprecated.
+
+## .prototype (Dot Prototype)
+
+Le **.prototype** est une proriété spéciale qu'ont **uniquement les fonctions**.
+
+![alt text](./function-prototype/img/function.png);
+
+Son but est de créer l'objet prototype des instances créées à partir de la fonction.
+
+Il y a 2 types de fonctions qui n'ont pas de .prototypes:
+
+- Arrow functions
+  Les arrow functions ne peuvent pas être utilisées comme constructor functions. Avec les arrow functions, le "this" fait référence au scope extérieur et donc ne fera pas référence au nouvel objet créé.
+
+- Bound functions
+  Les fonctions bindés (Bound Functions) n'ont pas pour but d'être utilisées comme constructor functions. Elles n'ont donc pas de .prototype.
