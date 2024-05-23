@@ -325,3 +325,39 @@ La particularité de cette fonction "mère" est que son .prototype est le même 
 Et toutes les fonctions sont créées à partir de cette Global Function:
 
 ![alt text](./function-prototype/img/global-function.png);
+
+La chaine de prototypes:
+
+![alt text](./function-prototype/img/prototype-full-chain.png);
+
+Ce qu'il se passe sur ce graphique:
+
+En utilisant le mot-clé "let", on dit au moteur Javascript de créer une variable, qui est juste un container pour stocker des datas (ici, un objet).
+
+Ici, l'objet est instancié depuis la fonction constructeur "Doctor".
+En tâche de fond, Javascript créé une variable "gpDoctor" de type object.
+
+Tous les objets ont une propriété [[Prototype]]. Ce "slot" pointe vers le constructeur qui a créé l'instance "gpDoctor" et qui est donc... la fonction constructeur "Doctor".
+
+Toutes les fonctions en Javascript ont une propriété [[Prototype]] ET .prototype. Et c'est ce .prototype de "Doctor" qui a créé le slot [[Prototype]] de "gpDoctor".
+
+Toutes les propriétés .prototype se voient automatiquement attribué un constructeur. Donc le .prototype de "Doctor" (ce vers quoi pointe le slot de "gpDoctor") a un constructeur.
+
+Ce constructeur du .prototype pointe vers la fonction constructeur "Doctor".
+Le .prototype de "Doctor", en plus du constructeur, possède aussi des méthodes (qui seront partagées entre les instances). Et comme tous les objets, il possède aussi un slot [[Prototype]].
+
+L'objet "gpDoctor" a accès à toutes les propriétés et méthodes du prototype de Doctor. Ainsi Javascript peut suivre la chaine des slot [[Prototype]].
+
+La chaine de [[Prototype]] ne s'arrête pas là car le slot du prototype de "Doctor" pointe vers le prototype de l'objet global "Object".
+
+Et comme dans tous les .prototype on y trouve, un constructeur, des méthodes propres à l'objet global (hasOwnProperty...) et comme c'est un objet... un slot [[Prototype]].
+
+Le constructeur de ce prototype pointe vers la fonction constructeur qui l'a créé: Object().
+On est au bout de la chaine et le slot de ce prototype pointe vers NULL.
+
+Revenons à la fonction constructeur Doctor(). Qui a créé cette fonction constructeur ? Où pointe le slot [[Prototype]] ?
+C'est le .prototype du Global Function Object.
+Ce .prototype contient un constructeur, des méthodes propres au Global Function Object (bind, call, apply...) et... comme c'est un objet, un slot [[Prototype]].
+Ce slot pointe vers la fonction constructeur Object().
+Le constructeur pointe vers la fonction constructeur Function().
+Cette fonction Function() est spéciale car le slot et le .prototype pointent tous les 2 vers le function object.
