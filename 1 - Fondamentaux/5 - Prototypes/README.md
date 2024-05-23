@@ -313,3 +313,15 @@ Chaque fonction qui possède [[Construct]] et [[Call]] est une fonction construc
 Règle: Le [[Prototype]] du nouvel objet créé est assigné au .prototype de la fonction constructeur (qui a créé l'objet).
 
 ![alt text](./function-prototype/img/function2.png);
+
+Règle: Les fonctions constructeur on un [[Prototype]] et .prototype.
+
+![alt text](./function-prototype/img/function3.png);
+
+## Global Function
+
+Toutes les fonctions en Javascript sont créées à partir de la **fonction globale**.
+La particularité de cette fonction "mère" est que son .prototype est le même que son [[Prototype]].
+Et toutes les fonctions sont créées à partir de cette Global Function:
+
+![alt text](./function-prototype/img/global-function.png);
