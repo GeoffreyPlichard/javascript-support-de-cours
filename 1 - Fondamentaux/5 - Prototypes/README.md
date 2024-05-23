@@ -253,3 +253,28 @@ Ici, la façon recommandée:
 
 Comme on peut le voir ci-dessus, d'autres méthodes ont été introduites: Object.create() ou Object.setPrototypeOf().
 Comme il existe d'autres méthodes plus modernes de faire ça, le mieux est de ne plus utiliser Dunder Proto
+
+## Récap de la façon de créer le prototype d'un objet
+
+- Via une fonction constructeur (constructor function)
+
+`new ConstructorFunction();`
+
+- A la création de l'objet
+
+`Object.create(prototype, [props]);`
+
+- Après la création de l'objet
+
+`Object.setPrototypeOf(obj, prototype);`
+Il vaut mieux utiliser setPrototypeOf avec des fonctions car il n'est pas possible de setter le prototype d'une fonction à la création. Par contre, avec les objets littéraux, mieux vaut utiliser Object.create car modifier un prototype en cours de route n'est pas conseillé.
+
+- Avec Dunder proto
+
+```
+let person = {
+  __proto__: prototype
+}
+```
+
+Cette méthode est deprecated.
