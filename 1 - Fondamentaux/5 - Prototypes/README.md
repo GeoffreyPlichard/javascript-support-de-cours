@@ -298,7 +298,14 @@ Il y a 2 types de fonctions qui n'ont pas de .prototypes:
 ## Différence entre \_\_PROTO\_\_ (Dunder Proto) et .prototype (Dot Prototype)
 
 Le [[Prototype]] est ajouté à tous les objets pour pouvoir chainer les objets et hériter des propriétés des parents (jusqu'à l'objet global Object).
-Le .prototype est uniquement présent dans les fonctions. Il permet de créer le [[Prototype]] des futurs objets qui vont être créés en faisant un "new Function".
+Le .prototype est uniquement présent dans les fonctions. Function.prototype est utilisé uniquement quand new Function est appelé. Quand c'est le cas, Javascript assigne le [[Prototype]] de l'objet au .prototype de Function.
+C'est pour cette raison que le .prototype est utile uniquement pour les fonctions constructeur.
 
-Par exemple, le .prototype des fonctions telles que Array(), String(), Number(), etc, va premettre de créer le [[Prototype]] des instances de ces fonctions en leur attribuant les spécificités de chaque fonction.
+Par exemple, le .prototype des fonctions telles que Array(), String(), Number(), etc, va premettre de récupérer les spécificités de chaque fonction.
 ex: Array() est fourni avec forEach(), String() est fourni avec bold(), etc.
+
+Attention: Toutes les fonctions avec un .prototype ne peuvent pas être utilisé avec "new". C'est le cas de Symbol, dont le but est de créer un wrapper autour des primitifs.
+
+Les fonctions constructeur sont définie par la présence de **deux méthodes internes**: [[Call]] et [[Construct]].
+Chaque objet qui possède la méthode [[Call]] est une fonction.
+Chaque fonction qui possède [[Construct]] et [[Call]] est une fonction constructeur.
