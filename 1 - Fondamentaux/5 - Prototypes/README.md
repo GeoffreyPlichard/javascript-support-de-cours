@@ -294,3 +294,11 @@ Il y a 2 types de fonctions qui n'ont pas de .prototypes:
 
 - Bound functions
   Les fonctions bindés (Bound Functions) n'ont pas pour but d'être utilisées comme constructor functions. Elles n'ont donc pas de .prototype.
+
+## Différence entre \_\_PROTO\_\_ (Dunder Proto) et .prototype (Dot Prototype)
+
+Le [[Prototype]] est ajouté à tous les objets pour pouvoir chainer les objets et hériter des propriétés des parents (jusqu'à l'objet global Object).
+Le .prototype est uniquement présent dans les fonctions. Il permet de créer le [[Prototype]] des futurs objets qui vont être créés en faisant un "new Function".
+
+Par exemple, le .prototype des fonctions telles que Array(), String(), Number(), etc, va premettre de créer le [[Prototype]] des instances de ces fonctions en leur attribuant les spécificités de chaque fonction.
+ex: Array() est fourni avec forEach(), String() est fourni avec bold(), etc.
