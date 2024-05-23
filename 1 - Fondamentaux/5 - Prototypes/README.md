@@ -309,3 +309,7 @@ Attention: Toutes les fonctions avec un .prototype ne peuvent pas être utilisé
 Les fonctions constructeur sont définie par la présence de **deux méthodes internes**: [[Call]] et [[Construct]].
 Chaque objet qui possède la méthode [[Call]] est une fonction.
 Chaque fonction qui possède [[Construct]] et [[Call]] est une fonction constructeur.
+
+Règle: Le [[Prototype]] du nouvel objet créé est assigné au .prototype de la fonction constructeur (qui a créé l'objet).
+
+![alt text](./function-prototype/img/function2.png);
