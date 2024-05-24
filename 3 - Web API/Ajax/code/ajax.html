@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax</title>
+</head>
+<body>
+  <script>
+    // Etape 1: Créer la requête en instanciant XMLHttpRequest
+    let xhr = new XMLHttpRequest();
+    console.log(xhr.readyState); // 0
+    console.log(xhr.status);     // 0
+
+    // Etape 2: Créer une fonction à exécuter quand la requête est terminée
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log(xhr.readyState);  // 4
+        console.log(xhr.status);      // 200
+
+        let data = JSON.parse(this.responseText);
+        document.write(JSON.stringify(data));
+      }
+    }
+
+    // Etape 3: Ouvrir la connexion et envoyer la requête
+    xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+    xhr.send();
+
+  </script>
+</body>
+</html>
