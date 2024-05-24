@@ -39,4 +39,4 @@ Il y a 4 états (states) concernant la requête (propriété readyState)
 
 - 5 - La réponse en renvoyée
 
-Voir _code/ajax.html_
+Voir _code/xmlHttpRequest/ajax.html_

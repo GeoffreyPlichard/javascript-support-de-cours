@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch</title>
+</head>
+<body>
+  
+  <script>
+    let url = 'https://jsonplaceholder.typicode.com/posts';
+
+
+    let customPost = {
+      title: 'Hello World',
+      body: 'This is a post',
+      userId: 1
+    };
+
+    let customHeader = {
+      "Content-Type": "application/json; charset-UTF-8"
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: customHeader,
+      body: JSON.stringify(customPost)
+    })
+    .then(response => response.json())
+    .then(newResponse => console.log(newResponse))
+
+
+  </script>
+</body>
+</html>
