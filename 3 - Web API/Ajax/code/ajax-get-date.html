@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax</title>
+</head>
+<body>
+  <h1></h1>
+  <script>
+
+    let getData = (url, callback) => {
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('GET', url, true);
+
+      xhr.responseType = 'json';
+
+      // onload is better than onReadyStateChange
+      xhr.onload = () => {
+        let status = xhr.status;
+
+        if (status == 200) {
+          callback(null, xhr.response);
+        } else {
+          callback(status);
+        }
+      }
+
+      xhr.send();
+    }
+    
+    getData('http://time.jsontest.com', (error, data) => {
+      if (error != null) {
+        console.log('OOPS', error);
+      } else {
+        let txt = ` at ${data.time}`;
+        document.getElementsByTagName('h1')[0].append(txt);
+      }
+    });
+  </script>
+</body>
+</html>
