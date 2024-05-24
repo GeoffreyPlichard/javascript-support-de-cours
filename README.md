@@ -16,6 +16,8 @@ Cours de Javascript de débutant à avancé
 
 ### Stockage Mémoire
 
+### Prototypes
+
 ## -------
 
 ## Web API
