@@ -1,3 +1,11 @@
+// Fonction constructeur User
+function User(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+// Ajout de la prop "admin" à toutes les instances de User
+User.prototype.admin = false;
 
 // Fonction constructeur Membre Vérifié
 function VerifiedMember(name, age) {
@@ -24,8 +32,9 @@ Doctor.prototype.introduceSelf = function() {
   help you with ${this.expertise} related issues`);
 }
 
-// Lier [[Prototype]] au .prototype de Verified Member
+// Lier [[Prototype]] au .prototype
 Object.setPrototypeOf(Doctor.prototype, VerifiedMember.prototype);
+Object.setPrototypeOf(VerifiedMember.prototype, User.prototype);
 
 // Création de l'instance
 let gpDoctor = new Doctor("Dr Strange", 34, "diagnosis");
