@@ -10,6 +10,6 @@ Quand on tape une url, le navigateur va la diviser en 3 parties:
 
 - Le nom du serveur (www.google.com)
 
-Pour trouver le serveur, le navigateur doit communiquer avec un Name Server, qui va "traduire" le nom du serveur en adresse IP. Grâce à cette adresse IP, le navigateur va pouvoir communiquer avec le serveur. Le plus souvent sur le port 80.
+Pour trouver le serveur, le navigateur doit communiquer avec un **Name Server**, qui va "traduire" le nom du serveur en adresse IP. Grâce à cette adresse IP, le navigateur va pouvoir communiquer avec le serveur. Le plus souvent sur le port 80.
 
 - La ressource (.html, .txt, .json...)
