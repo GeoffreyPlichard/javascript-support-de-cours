@@ -67,3 +67,16 @@ Ce paquet va contenir des informations sur les données transférées (source, d
 
 - Il est **stateless**
   Le client et serveur possèdent des informations l'un sur l'autre uniquement quand la connexion est ouverte.
+
+## Message HTTP
+
+Un message HTTP contient 3 informations:
+
+- General
+  La méthode qui va dire au serveur quoi faire avec ce message (GET, POST...). Le status code en cas de réponse.
+
+- Headers
+  Objet qui contient des informations sur le message (type de ressource, langues etc)
+
+- Body
+  Le contenu de la requête
