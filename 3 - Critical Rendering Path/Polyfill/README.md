@@ -11,3 +11,17 @@ Mais les navigateurs ne sont pas obligés de se plier à ces standards. Par exem
 Pour palier à ce problème, on doit mettre en place des **polyfill**.
 
 Un polyfill fournie un **fallback**, un script qui sera exécuté en cas d'abscence d'une fonctionnalité.
+
+On peut trouver des polyfills déjà fabriqué sur le web. Par exemple ici:
+https://html5please.com.
+
+## Comment créer un polyfill ?
+
+Prenons l'exemple de la méthode .forEach() en Javascript.
+
+Pour savoir une une méthode existe en Javascript, il faut chercher cette méthode dans le prototype de la fonction constructeur (voir section prototypes).
+Par exemple:
+
+`Array.prototype.forEach`
+
+Si "undefined" est retourné, il faut recréer cette méthode pour qu'elle soit comprise par le navigateur. Voir _forEach.js_
