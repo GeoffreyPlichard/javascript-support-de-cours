@@ -24,4 +24,4 @@ Par exemple:
 
 `Array.prototype.forEach`
 
-Si "undefined" est retourné, il faut recréer cette méthode pour qu'elle soit comprise par le navigateur. Voir _forEach.js_
+Si "undefined" est retourné, il faut recréer cette méthode pour qu'elle soit comprise par le navigateur. Voir _forEach-polyfill.js_

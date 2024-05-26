@@ -361,3 +361,8 @@ Ce .prototype contient un constructeur, des méthodes propres au Global Function
 Ce slot pointe vers la fonction constructeur Object().
 Le constructeur pointe vers la fonction constructeur Function().
 Cette fonction Function() est spéciale car le slot et le .prototype pointent tous les 2 vers le function object.
+
+## Callbacks
+
+Quand une fonction n'est pas appelée en tant que méthode, alors cette fonction sera une **méthode du window object**.
+C'est pour cette raison que dans les fonctions de callback ou les expressions de fonction, le **this** fait référence à l'**objet global**.
