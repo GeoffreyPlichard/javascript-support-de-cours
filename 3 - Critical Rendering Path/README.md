@@ -75,3 +75,18 @@ La persistance des données est effectuées par plusieurs API (Local Storage, Se
 - Session Storage: Garde les données en mémoire tant que la session est active.
 - Cookie: Collection de paire clé:valeur stocké dans la mémoire du navigateur. Ils naviguent entre le serveur et le navigateur ce qui ne les rend pas très performants. C'est même la méthode la moins performante pour stocker les données dans le navigateur.
   Mais c'est une solution utile concernant la sécurité.
+
+# Critical Rendering Path
+
+Que se passe-t-il quand le HTML est prêt ?
+Le moteur de rendu (Rendering Engine) parse le HTML et le convertie en DOM nodes qu'on appelle le **Content Tree** (arbre de contenu).
+Dans le même temps, le moteur va aussi parse le style. Ces informations de style et les instructions visuelles du HTML vont être utilisés pour créér un autre arbre: le CSSOM.
+Le tout va former le **Render Tree** (arbre de rendu).
+
+L'étape suivant est d'afficher le contenu sur l'écran.
+
+Intervient le **Layout Process**, qui prend chaque node et lui donne les coordonnées exactes de l'endroit où il doit être affiché sur l'écran.
+
+Et enfin, le **Painting**. Le Render Tree est scanné et chaque node est affiché au bon endroit sur l'écran, utilisant la couche UI Backend.
+
+Le processus (Critical Rendering Path), est fluide. Il s'exécute au fur et à mesure que les données sont récupérées depuis le serveur.
