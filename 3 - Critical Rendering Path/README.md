@@ -113,3 +113,16 @@ On peut accéder aux différentes étapes du CRP dans le Developer Tool, Perform
   Cet évènement est déclenché quand toutes les feuilles de styles, images etc sont chargés.
 
 La ligne rouge doit s'exécuter le plus tôt possible pour des questions de performance.
+
+## CSSOM
+
+Pour former le CSSOM, le navigateur passe par les mêmes étapes que pour le DOM.
+Le style a aussi besoin d'un arbre car les éléments sont stylisés en cascade. Les enfants héritent du style de leur parent.
+
+![alt text](./Analyse CRP/img/cssom.png)
+
+Le DOM et CSSOM sont assemblés pour former le Render Tree:
+
+![alt text](./Analyse CRP/img/render-tree.png)
+
+Comme on peut le voir sur l'image, le span est absent de l'arbre car on lui a attribué un display:none.
