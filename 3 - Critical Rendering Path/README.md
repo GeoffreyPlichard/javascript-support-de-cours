@@ -90,3 +90,12 @@ Intervient le **Layout Process**, qui prend chaque node et lui donne les coordon
 Et enfin, le **Painting**. Le Render Tree est scanné et chaque node est affiché au bon endroit sur l'écran, utilisant la couche UI Backend.
 
 Le processus (Critical Rendering Path), est fluide. Il s'exécute au fur et à mesure que les données sont récupérées depuis le serveur.
+
+## Création du DOM
+
+Pour en savoir plus sur le DOM, voir la section Document Object Model.
+
+Quand le navigateur requête du HTML, il reçoit des bytes. Il doit donc les convertir en une structure compréhensible. C'est la **tokenisation**.
+Un token est une partie du HTML qui contient des informations sur chaque balise HTML.
+Pour savoir comment il doit convertir les bytes, le navigateur vérifie le charset du document HTML. Par exemple charset-utf-8.
+Les tokens sont ensuites convertis en noeuds (Node) qui sont ensuite structurés en arbre (Tree). Cet arbre forme le DOM.
