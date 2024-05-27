@@ -99,3 +99,17 @@ Quand le navigateur requête du HTML, il reçoit des bytes. Il doit donc les con
 Un token est une partie du HTML qui contient des informations sur chaque balise HTML.
 Pour savoir comment il doit convertir les bytes, le navigateur vérifie le charset du document HTML. Par exemple charset-utf-8.
 Les tokens sont ensuites convertis en noeuds (Node) qui sont ensuite structurés en arbre (Tree). Cet arbre forme le DOM.
+
+## Analyse du CRP
+
+On peut accéder aux différentes étapes du CRP dans le Developer Tool, Performance.
+
+![alt text](./Analyse CRP/img/crp.png)
+
+- DCL: Dom Content Loaded Event (Ligne blue)
+  Cet évènement indique que le DOM est prêt et qu'aucune feuille de style bloque l'exécution de Javascript. A partir de ce moment le Javascript peut-être exécuté.
+
+- L: Onload Event (ligne rouge)
+  Cet évènement est déclenché quand toutes les feuilles de styles, images etc sont chargés.
+
+La ligne rouge doit s'exécuter le plus tôt possible pour des questions de performance.
