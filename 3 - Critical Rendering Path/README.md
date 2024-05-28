@@ -126,3 +126,21 @@ Le DOM et CSSOM sont assemblés pour former le Render Tree:
 ![alt text](./Analyse CRP/img/render-tree.png)
 
 Comme on peut le voir sur l'image, le span est absent de l'arbre car on lui a attribué un display:none.
+
+## Render Blocking Resources
+
+Certaines ressources sont bloquante pour le CRP. C'est le cas du HTML, JS et du CSS.
+Cela veut dire que le navigateur ne va traiter aucun contenu jusqu'à ce que le DOM et le CSSOM soient construits. Tout le reste est en pause.
+C'est pour cette raison qu'il faut essayer de délivrer le HTML et le CSS le plus rapidement possible.
+Le Javascript est aussi bloquant. Si on ajoute une balise "script" entre 2 éléments HTML, le parser HTML sera bloqué jusqu'à ce que le Javascript soit traité.
+
+## Media Queries
+
+Les Media Queries impactent les performances du CRP, il faut donc les maitriser.
+Par ex:
+
+`<link href="protrait.css" rel="stylesheet" media="(min-width: 30em)">`
+
+Si la condition match, le navigateur va bloquer le rendu de la page jusqu'à ce que la feuille de style soit téléchargée et traitée.
+
+Par exemple, la partie la plus importante au chargement d'une page est la partie visible (**The Fold**). Le reste devrait donc être non bloquant.
