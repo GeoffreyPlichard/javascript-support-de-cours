@@ -186,3 +186,5 @@ window.addEventListener('load', () => {
   <script src="important.js"></script>
 </body>
 ```
+
+- **Le Speculative Parsing** est maintenant utilisé par les navigateurs. Il permet de télécharger les fichiers en tâche de fond et en parallèle.
