@@ -102,12 +102,17 @@ Les tokens sont ensuites convertis en noeuds (Node) qui sont ensuite structurés
 
 ## Analyse du CRP
 
-On peut accéder aux différentes étapes du CRP dans le Developer Tool, Performance.
+3 étapes sont importantes pour améliorer les performances. On peut accéder à ces étapes du CRP dans le Developer Tool.
 
 ![alt text](./Analyse CRP/img/crp.png)
 
 - DCL: Dom Content Loaded Event (Ligne blue)
-  Cet évènement indique que le DOM est prêt et qu'aucune feuille de style bloque l'exécution de Javascript. A partir de ce moment le Javascript peut-être exécuté.
+  Cet évènement indique que le DOM est prêt. A partir de ce moment le Javascript peut-être exécuté.
+  On peut accéder à cet évènement:
+  `document.addEventListener("DOMContentLoaded), () => {console.log("DOM is ready !")});`
+
+- FCP: First Meaningful Paint
+  Vérifier cette étape est importante pour des questions de performance et aussi car Google l'utilise pour le ranking de ses pages.
 
 - L: Onload Event (ligne rouge)
   Cet évènement est déclenché quand toutes les feuilles de styles, images etc sont chargés.
@@ -132,9 +137,12 @@ Comme on peut le voir sur l'image, le span est absent de l'arbre car on lui a at
 Certaines ressources sont bloquante pour le CRP. C'est le cas du HTML, JS et du CSS.
 Cela veut dire que le navigateur ne va traiter aucun contenu jusqu'à ce que le DOM et le CSSOM soient construits. Tout le reste est en pause.
 C'est pour cette raison qu'il faut essayer de délivrer le HTML et le CSS le plus rapidement possible.
+
 Le Javascript est aussi bloquant. Si on ajoute une balise "script" entre 2 éléments HTML, le parser HTML sera bloqué jusqu'à ce que le Javascript soit traité.
 
-## Media Queries
+## Quelles Solutions ?
+
+### CSS
 
 Les Media Queries impactent les performances du CRP, il faut donc les maitriser.
 Par ex:
@@ -144,3 +152,14 @@ Par ex:
 Si la condition match, le navigateur va bloquer le rendu de la page jusqu'à ce que la feuille de style soit téléchargée et traitée.
 
 Par exemple, la partie la plus importante au chargement d'une page est la partie visible (**The Fold**). Le reste devrait donc être non bloquant.
+
+### Javascript
+
+Charger les scripts JS à la fin du document HTML est une bonne pratique car ça permet au DOM de se construire plus vite et donc arriver plus vite au **First Meaningful Paint**.
+Ca revient à attendre le DOMContentLoaded Event.
+
+**Async** permet de ne pas bloquer le parsing HTML pendant que le fichier JS est récupéré. Il sera en revanche toujours bloqué pendant la phase d'exécution du Javascript.
+
+`<script async src="app.js"></script>`
+
+![alt text](./Analyse CRP/img/async.png)
