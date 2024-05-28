@@ -155,11 +155,15 @@ Par exemple, la partie la plus importante au chargement d'une page est la partie
 
 ### Javascript
 
-Charger les scripts JS à la fin du document HTML est une bonne pratique car ça permet au DOM de se construire plus vite et donc arriver plus vite au **First Meaningful Paint**.
-Ca revient à attendre le DOMContentLoaded Event.
+- **Charger les scripts JS à la fin du document HTML** est une bonne pratique car ça permet au DOM de se construire plus vite et donc arriver plus vite au **First Meaningful Paint**.
+  Ca revient à attendre le DOMContentLoaded Event.
 
-**Async** permet de ne pas bloquer le parsing HTML pendant que le fichier JS est récupéré. Il sera en revanche toujours bloqué pendant la phase d'exécution du Javascript.
+- **Async** permet de ne pas bloquer le parsing HTML pendant que le fichier JS est récupéré. Il sera en revanche toujours bloqué pendant la phase d'exécution du Javascript.
 
 `<script async src="app.js"></script>`
 
 ![alt text](./Analyse CRP/img/async.png)
+
+- **Defer**, contrairement à Async, garantie que l'ordre des scripts est respecté. Il permet au Javascript d'être exécuté juste avant le DOMContentLoaded.
+
+![alt text](./Analyse CRP/img/defer.png)
