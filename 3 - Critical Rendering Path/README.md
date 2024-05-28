@@ -167,3 +167,22 @@ Par exemple, la partie la plus importante au chargement d'une page est la partie
 - **Defer**, contrairement à Async, garantie que l'ordre des scripts est respecté. Il permet au Javascript d'être exécuté juste avant le DOMContentLoaded.
 
 ![alt text](./Analyse CRP/img/defer.png)
+
+- **Créer des évènements custom** permet d'avoir plus de contrôle sur l'exécution du Javascript.
+
+```
+window.addEventListener('load', () => {
+  console.log('Loaded !');
+});
+```
+
+- **Preload** permet de précharger des ressources. C'est utile pour afficher des ressources dans le fold très rapidement (images, audio, etc).
+
+```
+<head>
+  <link rel="preload" href="important.js" as="script">
+</head>
+<body>
+  <script src="important.js"></script>
+</body>
+```
