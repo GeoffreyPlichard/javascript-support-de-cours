@@ -188,3 +188,31 @@ window.addEventListener('load', () => {
 ```
 
 - **Le Speculative Parsing** est maintenant utilisé par les navigateurs. Il permet de télécharger les fichiers en tâche de fond et en parallèle.
+
+## Network
+
+![alt text](./Analyse CRP/img/network.png)
+
+Si on visite la page de Microsoft, on constate qu'il faut 12 secondes pour que toutes les ressources soient fetch mais le DomContentLoaded prend 3.6 secondes.
+On peut continuer à scroller pendant que les ressources continuent à arriver.
+C'est l'avantage d'utiliser des techniques de preloading comme vu précédemment.
+
+L'important concernant les performances d'une page est le temps que met le navigateur pour être **paint-ready**. C'est à dire, toutes les phases qui précèdent l'affichage des pixels à l'écran.
+
+Les différentes étapes sont les suivantes:
+
+- Le **Queuing** (mise en file d'attente): La requête est mise en file d'attente. Il y a plusieurs raisons pour laquelle une requête est mis en file d'attente:
+  - **Retardé par le moteur de rendu** car considéré comme moins important que d'autres ressources comme le CSS ou JS. C'est souvent le cas pour les images.
+  - **Un socket TCP peut être indisponible** (voir section HTTP)
+  - **Trop de ressources sur un même domaine sont requested**. Par exemple, Chrome impose 6 connexions TCP par host.
+
+Pour soulager le queuing, la solution la plus simple est de supprimer ou "defer" les requêtes qui ne sont pas nécessaires immédiatement.
+Il y a aussi le **domain sharding**, qui consiste à créer plusieurs dubdomains pour servir les ressources (ne fonctionne pas avec HTTP2, voir section HTTP).
+
+- Le **Stalled** est similaire au queuing sauf qu'il prend en compte le **proxy negotiation**
+
+- Le **TTFB** (Time To First Byte) est le temps que prend le navigateur à devoir attendre de recevoir les données du serveur après avoir fait une première requête. Il est représenté par une ligne verte dans le Developer Tool network waterfall.
+  Il capture le temps d'un aller-retour vers le serveur.
+  C'est en général l'étape où il y a le plus de latence dans une requête.
+
+- Le Content Download est le temps qu'il faut pour recevoir tous les octets du serveur après avoir reçu le premier octet (First Byte). Il est représenté par une ligne bleue, juste après la ligne verte. Cette étape est dépendante de la vitesse de connexion.
