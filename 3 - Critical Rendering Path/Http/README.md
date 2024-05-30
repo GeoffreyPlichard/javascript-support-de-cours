@@ -80,3 +80,16 @@ Un message HTTP contient 3 informations:
 
 - Body
   Le contenu de la requête
+
+# HTTP/2
+
+HTTP/1 a été créé en 1997 et il n y a pas eu vraiment de mises à jour depuis.
+C'est en 2015 que HTTP 2.0 est créé.
+HTTP 2 autorise le **full multiplexing connexions**. Cela permet d'ouvrir une seule connexion pour envoyer plusieurs fichiers. Plusieurs requêtes peuvent être envoyées avec la même connexion qui reste ouverte pendant tout le processus de transfert.
+
+Plusieurs hacks pour gérer la lenteur de HTTP 1 ne sont plus utiles comme par exemple:
+
+- Concaténer le CSS et JS
+- Les sprites d'images
+- Le domain sharding
+- Inlining CSS et JS
