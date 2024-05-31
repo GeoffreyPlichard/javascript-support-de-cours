@@ -20,10 +20,14 @@ Cours de Javascript de débutant à avancé
 
 ## -------
 
-## Web API
+## Critical Rendering Path
 
 ## -------
 
 ### Document Object Model (DOM)
+
+### Ajax
+
+### HTTP
 
 En cours d'écriture...

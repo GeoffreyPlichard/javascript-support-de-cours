@@ -104,7 +104,7 @@ Les tokens sont ensuites convertis en noeuds (Node) qui sont ensuite structurés
 
 3 étapes sont importantes pour améliorer les performances. On peut accéder à ces étapes du CRP dans le Developer Tool.
 
-![alt text](./Analyse CRP/img/crp.png)
+![alt text](./analyse-crp/img/crp.png)
 
 - DCL: Dom Content Loaded Event (Ligne blue)
   Cet évènement indique que le DOM est prêt. A partir de ce moment le Javascript peut-être exécuté.
@@ -124,11 +124,11 @@ La ligne rouge doit s'exécuter le plus tôt possible pour des questions de perf
 Pour former le CSSOM, le navigateur passe par les mêmes étapes que pour le DOM.
 Le style a aussi besoin d'un arbre car les éléments sont stylisés en cascade. Les enfants héritent du style de leur parent.
 
-![alt text](./Analyse CRP/img/cssom.png)
+![alt text](./analyse-crp/img/cssom.png)
 
 Le DOM et CSSOM sont assemblés pour former le Render Tree:
 
-![alt text](./Analyse CRP/img/render-tree.png)
+![alt text](./analyse-crp/img/render-tree.png)
 
 Comme on peut le voir sur l'image, le span est absent de l'arbre car on lui a attribué un display:none.
 
@@ -162,11 +162,11 @@ Par exemple, la partie la plus importante au chargement d'une page est la partie
 
 `<script async src="app.js"></script>`
 
-![alt text](./Analyse CRP/img/async.png)
+![alt text](./analyse-crp/img/async.png)
 
 - **Defer**, contrairement à Async, garantie que l'ordre des scripts est respecté. Il permet au Javascript d'être exécuté juste avant le DOMContentLoaded.
 
-![alt text](./Analyse CRP/img/defer.png)
+![alt text](./analyse-crp/img/defer.png)
 
 - **Créer des évènements custom** permet d'avoir plus de contrôle sur l'exécution du Javascript.
 
@@ -191,7 +191,7 @@ window.addEventListener('load', () => {
 
 ## Network
 
-![alt text](./Analyse CRP/img/network.png)
+![alt text](./analyse-crp/img/network.png)
 
 Si on visite la page de Microsoft, on constate qu'il faut 12 secondes pour que toutes les ressources soient fetch mais le DomContentLoaded prend 3.6 secondes.
 On peut continuer à scroller pendant que les ressources continuent à arriver.
