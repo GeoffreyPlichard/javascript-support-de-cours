@@ -1,0 +1,15 @@
+{
+  "name": "rxjs",
+  "version": "1.0.0",
+  "description": "RxJS est une librairie basé sur ReactiveX, qui repose sur le design pattern Observer, Iterator et la programmation fonctionnelle. (Voir le cours Typescript / Design Patterns).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  }
+}
