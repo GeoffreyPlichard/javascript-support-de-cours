@@ -27,3 +27,26 @@ On peut aussi créer un observable à partir d'un évènement du DOM avec le mé
 `const clickStream$ = fromEvent(document, 'click')`
 
 C'est l'équivalent d'un document.addEventListener('click')
+
+Subscribe a 3 arguments:
+
+- Le handler: Callback déclenché si tout va bien
+- Le error handler: Callback déclenché si erreur
+- le terminated handler: Callback déclenché quand le stream est terminé
+
+```
+clickStream$.subscribe(
+  evt => console.log(evt),
+  err => console.log(err),
+  () => console.log('completed')
+);
+```
+
+**Quand le stream est terminé, il n'émittera plus.**
+
+On peut terminer un stream avec la méthode unsubscribe accessible depuis l'objet de souscription:
+
+```
+const subscription = interval$.subscribe(...);
+subscription.unsubscribe();
+```
