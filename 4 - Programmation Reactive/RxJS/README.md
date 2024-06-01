@@ -20,7 +20,7 @@ Il faut ensuite créer ce flux grâce à la méthode subscribe().
 `interval$.subscribe(callback)`
 
 **Aucune valeur n'est émise tant qu'on est pas abonné (subscribe) à l'observable.**
-Voir exemple _streams/interval.js_
+Voir exemple _creation/interval.js_
 
 On peut aussi créer un observable à partir d'un évènement du DOM avec le méthode **fromEvent()**
 
