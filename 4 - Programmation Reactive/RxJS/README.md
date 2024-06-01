@@ -42,7 +42,7 @@ clickStream$.subscribe(
 );
 ```
 
-**Quand le stream est terminé, il n'émittera plus.**
+**Quand le stream est terminé, il n'émettera plus.**
 
 On peut terminer un stream avec la méthode unsubscribe accessible depuis l'objet de souscription:
 

@@ -21,3 +21,11 @@ const http$ = Observable.create(observer => {
       observer.error(err);
     });
 });
+
+// Client
+
+http$.subscribe(
+  courses => console.log(courses),
+  noop,
+  () => console.log('completed')
+)
