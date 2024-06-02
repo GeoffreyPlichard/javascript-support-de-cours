@@ -10,7 +10,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { NgFor } from '@angular/common';
-import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'home',
@@ -30,13 +29,22 @@ export class HomeComponent implements OnInit {
   beginnerCourses: Course[] = [];
   advancedCourses: Course[] = [];
 
-  constructor(
-    private http: HttpClient, 
-    private dialog: MatDialog,
-    private coursesService: CoursesService
-  ) {}
+  constructor(private http: HttpClient, private dialog: MatDialog) {}
 
   ngOnInit() {
+    // Approche impérative qui ne justifie pas l'utilisation d'un observable
+    // Ici on peut très bien utiliser une promesse.
+    // Utiliser une approche impérative avec des observables peut conduire
+    // au même problème de callback hell qu'on avait avant l'apparition des promesses.
+    // De plus, le composant ne devrait pas savoir d'où proviennent les données et devrait
+    // être testable facilement sans devoir utiliser un vrai HTTP backend.
+    // Ce code n'est pas non plus réutilisable ailleurs
+    // ----------
+    // Le fait de garder les données dans des mutable variable (beginnerCourses) est aussi problématique.
+    // Si on fait un changement sur ces variable, la vue ne peut pas le savoir.
+    // On doit donc utiliser ngOnChanges de manière systématique.
+    // Ce n'est pas non plus très performant dû au change detection. 
+    // Et on ne peut pas utiliser le onPush detection.
     this.http.get('/api/courses')
       .subscribe(
         (res: any) => {
