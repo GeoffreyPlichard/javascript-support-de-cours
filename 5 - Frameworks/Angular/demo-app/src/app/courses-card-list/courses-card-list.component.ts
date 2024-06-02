@@ -3,7 +3,7 @@
 // Le composant ne doit pas contenir de logique et doit juste
 // afficher les données
 
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Course } from '../model/course';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
@@ -11,6 +11,7 @@ import { NgFor } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { filter, tap } from 'rxjs';
 
 @Component({
   selector: 'app-courses-card-list',
@@ -29,6 +30,9 @@ export class CoursesCardListComponent {
   @Input()
   courses: Course[] = [];
 
+  @Output()
+  private coursesChanged = new EventEmitter();
+
   constructor(private dialog: MatDialog) {}
 
   editCourse(course: Course) {
@@ -41,6 +45,13 @@ export class CoursesCardListComponent {
     dialogConfig.data = course;
 
     const dialogRef = this.dialog.open(CourseDialogComponent, dialogConfig);
+  
+    dialogRef.afterClosed()
+      .pipe(
+        filter(val => !!val),
+        tap(() => this.coursesChanged.emit())
+      )
+      .subscribe();
   }
 
 }
