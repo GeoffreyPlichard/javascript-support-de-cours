@@ -2,7 +2,7 @@
 
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, map } from "rxjs";
+import { Observable, map, shareReplay } from "rxjs";
 import { Course } from "../model/course";
 
 @Injectable({
@@ -14,7 +14,8 @@ export class CoursesService {
   loadAllCourses(): Observable<Course[]> {
     return this.http.get<Course[]>('/api/courses')
       .pipe(
-        map((res: any) => res['payload'])
+        map((res: any) => res['payload']),
+        shareReplay()
       );
   }
 }
