@@ -7,7 +7,12 @@
 // L'observer permet d'implémenter l'observable. Il sera call une fois 
 // qu'on sera subscribed
 const http$ = Observable.create(observer => {
-  fetch('/api/courses')
+
+  // Permet d'annuler un call HTTP
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  fetch('/api/courses', {signal})
     .then(response => {
       return response.json();
     })
@@ -20,6 +25,10 @@ const http$ = Observable.create(observer => {
       // Pas besoin de complete ici car l'erreur stop le stream
       observer.error(err);
     });
+  
+  // On retourne une fonction de callback qui sera trigger quand on 
+  // unsubscribe. Ici on cancel le call HTTP dans ce cas.
+  return () => controller.abort();
 });
 
 // Client
