@@ -9,5 +9,5 @@ this.loadSessons()
   )
   .subscribe(([lessons, courses]) => {
     console.log('lessons', lessons);
-    console.log('courses', courses);
+    console.log('courses', lessons);
   });
