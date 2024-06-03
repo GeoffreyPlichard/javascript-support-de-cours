@@ -13,8 +13,8 @@ setTimeout(() => {
   series$.subscribe(val => console.log("late subscription" + val));
 }, 3000); // Ne fonctionne pas avec un Subject.
 
-// BehaviorSubject
 
+// BehaviorSubject
 
 const behaviorSubject = new BehaviorSubject(0);
 

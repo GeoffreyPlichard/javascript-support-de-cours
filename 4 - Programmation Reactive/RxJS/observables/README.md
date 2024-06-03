@@ -14,3 +14,13 @@ On peut aussi chainer des observables avec:
 # BehaviorSubject
 
 Le BehaviorSubject permet le **late subscription**. Si des valeurs ont été émises avant la subscription, elle seront disponible, ce qui n'est pas le cas avec un Subject.
+
+# AsyncSubject
+
+AsyncSubject est utile quand on a pas besoin d'attendre que les valeurs soient traité pour émettre une nouvelle valeur.
+Les valeurs seront traités dans des ordres différents.
+Il va attendre que le subject soit completed avant d'émettre une nouvelle valeur.
+
+# ReplaySubject
+
+ReplaySubject permet de récupérer toutes les valeurs pour les late subscribers.
