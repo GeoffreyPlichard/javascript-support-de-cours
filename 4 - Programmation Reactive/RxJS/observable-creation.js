@@ -14,7 +14,13 @@ const http$ = Observable.create(observer => {
 
   fetch('/api/courses', {signal})
     .then(response => {
-      return response.json();
+      // Ici on prend en charge un cas d'erreur qui potentiellement
+      // ne passerait pas dans le catch
+      if (response.ok) {
+        return response.json();
+      } else {
+        observer.error('Request failed with status code: ' + response.status);
+      }
     })
     .then(body => {
       // Permet d'émettre des valeurs dans l'observable
