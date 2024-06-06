@@ -14,6 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { CoursesService } from '../services/courses.service';
 import { LoadingService } from '../loading/loading.service';
+import { LoadingComponent } from '../loading/loading.component';
 
 
 @Component({
@@ -21,7 +22,8 @@ import { LoadingService } from '../loading/loading.service';
     standalone: true,
     providers: [  
         MatDatepickerModule,
-        provideMomentDateAdapter()
+        provideMomentDateAdapter(),
+        LoadingService
     ],
     imports: [
         MatDialogModule,
@@ -32,6 +34,7 @@ import { LoadingService } from '../loading/loading.service';
         MatButtonModule,
         MatFormFieldModule,
         MatInputModule,
+        LoadingComponent
     ],
     templateUrl: './course-dialog.component.html',
     styleUrls: ['./course-dialog.component.scss']
@@ -68,7 +71,9 @@ export class CourseDialogComponent implements AfterViewInit {
     save() {
       const changes = this.form.value;
 
-      this.coursesService.saveCourse(this.course.id, changes)
+      const saveCourse$ = this.coursesService.saveCourse(this.course.id, changes);
+
+      this.loadingService.showLoaderUntilCompleted(saveCourse$)
         .subscribe(
             (val) => {
                 this.dialogRef.close(val);

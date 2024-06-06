@@ -8,6 +8,10 @@ export class LoadingService {
 
   loading$: Observable<boolean> = this.loadingSubject.asObservable();
 
+  constructor() {
+    console.log('Loading service created...');
+  }
+
   showLoaderUntilCompleted<T>(obs$: Observable<T>): Observable<T> {
     // Créé une valeur initiale qui sera tout de suite completed
     // pour pouvoir créer une chaine d'observable.
