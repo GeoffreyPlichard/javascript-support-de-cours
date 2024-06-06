@@ -1,9 +1,7 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogRef } from "@angular/material/dialog";
+import {Component, Inject} from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import {Course} from "../model/course";
-import {FormBuilder, Validators, FormGroup, ReactiveFormsModule, FormsModule} from "@angular/forms";
-import {catchError} from 'rxjs/operators';
-import {throwError} from 'rxjs';
+import {FormBuilder, Validators, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -12,11 +10,11 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
-import { CoursesService } from '../services/courses.service';
 import { LoadingService } from '../loading/loading.service';
 import { LoadingComponent } from '../loading/loading.component';
 import { MessagesComponent } from '../messages/messages.component';
 import { MessagesService } from '../messages/messages.service';
+import { CoursesStore } from '../services/courses.store';
 
 
 @Component({
@@ -43,7 +41,7 @@ import { MessagesService } from '../messages/messages.service';
     templateUrl: './course-dialog.component.html',
     styleUrls: ['./course-dialog.component.scss']
 })
-export class CourseDialogComponent implements AfterViewInit {
+export class CourseDialogComponent {
 
     form: FormGroup;
 
@@ -53,9 +51,7 @@ export class CourseDialogComponent implements AfterViewInit {
         private fb: FormBuilder,
         private dialogRef: MatDialogRef<CourseDialogComponent>,
         @Inject(MAT_DIALOG_DATA) course:Course,
-        private coursesService: CoursesService,
-        private loadingService: LoadingService,
-        private messagesService: MessagesService
+        private coursesStore: CoursesStore,
     ) {
 
         this.course = course;
@@ -69,29 +65,14 @@ export class CourseDialogComponent implements AfterViewInit {
 
     }
 
-    ngAfterViewInit() {
-
-    }
-
     save() {
       const changes = this.form.value;
 
-      const saveCourse$ = this.coursesService.saveCourse(this.course.id, changes)
-        .pipe(
-            catchError(err => {
-                const message = 'Could not save course';
-                console.log(message, err)
-                this.messagesService.showErrors(message);
-                return throwError(err);
-            })
-        );
+      this.coursesStore
+        .saveCourse(this.course.id, changes)
+        .subscribe();
 
-      this.loadingService.showLoaderUntilCompleted(saveCourse$)
-        .subscribe(
-            (val) => {
-                this.dialogRef.close(val);
-            }
-        );
+        this.dialogRef.close(changes);
     }
 
     close() {
