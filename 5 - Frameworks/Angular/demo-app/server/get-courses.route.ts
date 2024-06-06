@@ -4,7 +4,6 @@ import {COURSES} from "./db-data";
 
 
 export function getAllCourses(req: Request, res: Response) {
-
 /*
     const error = (Math.random() >= 0.5);
 
@@ -16,9 +15,6 @@ export function getAllCourses(req: Request, res: Response) {
  */
 
         setTimeout(() => {
-            // Generate error
-            // res.status(500).json({message: ' error occurred.})
-
              res.status(200).json({payload:Object.values(COURSES)});
 
         }, 1500);
