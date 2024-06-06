@@ -10,6 +10,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { AsyncPipe } from '@angular/common';
 import { CoursesService } from '../services/courses.service';
 import { CoursesCardListComponent } from '../courses-card-list/courses-card-list.component';
+import { LoadingService } from '../loading/loading.service';
 
 @Component({
   selector: 'home',
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit {
   advancedCourses$!: Observable<Course[]>;
 
   constructor(
-    private coursesService: CoursesService
+    private coursesService: CoursesService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -35,9 +37,12 @@ export class HomeComponent implements OnInit {
   }
 
   reloadCourses() {
+    this.loadingService.loadingOn();
+
     const courses$ = this.coursesService.loadAllCourses()
       .pipe(
-        map(courses => courses.sort(sortCoursesBySeqNo))
+        map(courses => courses.sort(sortCoursesBySeqNo)),
+        finalize(() => this.loadingService.loadingOff())
       );
 
     this.beginnerCourses$ = courses$.pipe(
