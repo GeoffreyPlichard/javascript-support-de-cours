@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -13,8 +13,9 @@ import { MessagesService } from './messages/messages.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  providers: [LoadingService, MessagesService],
+  providers: [],
   imports: [
+    RouterLink,
     RouterOutlet, 
     MatToolbarModule, 
     MatIconModule,
