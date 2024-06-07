@@ -1,9 +1,10 @@
 // Stateless Observable-based Service
 
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, map, shareReplay } from "rxjs";
 import { Course } from "../model/course";
+import { Lesson } from "../model/lesson";
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,25 @@ export class CoursesService {
       .pipe(
         shareReplay()
       );
+  }
+
+  findLessons(
+    courseId: string,
+    filter = '',
+    sortOrder = 'asc',
+    pageNumber = 0,
+    pageSize = 3
+
+  ): Observable<Lesson[]> {
+    return this.http.get('/api/lessons', {
+      params: new HttpParams()
+        .set('courseId', courseId.toString())
+        .set('filter', filter)
+        .set('sortOdrer', sortOrder)
+        .set('pageNumber', pageNumber.toString())
+        .set('pageSize', pageSize.toString())
+    }).pipe(
+      map((res: any) => res['payload'])
+    );
   }
 }
