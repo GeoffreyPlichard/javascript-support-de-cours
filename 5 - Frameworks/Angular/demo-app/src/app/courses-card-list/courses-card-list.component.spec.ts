@@ -52,7 +52,7 @@ describe('CoursesCardListComponent', () => {
 
     //console.log(el.nativeElement.outerHTML); // OK
 
-    console.log(el.nativeElement.outerHTML);
+    //console.log(el.nativeElement.outerHTML);
 
     // On identifie tous les éléments avec cette classe
     const cards = el.queryAll(By.css('.course-card'))
@@ -60,5 +60,24 @@ describe('CoursesCardListComponent', () => {
     expect(cards).withContext('Could not find cards').toBeTruthy();
 
     expect(cards.length).withContext('Unexpected number of courses').toBe(14);
+  });
+
+  it('should display the first course', () => {
+
+    component.courses = setupCourses();
+
+    fixture.detectChanges();
+
+    const course = component.courses[0];
+
+    const card = el.query(By.css('.course-card:first-child'));
+
+    const title = card.query(By.css('mat-card-title'));
+
+    const image = card.query(By.css('img'));
+
+    expect(card).withContext('Could not find coures card').toBeTruthy();
+    expect(title.nativeElement.textContent).toBe(course.description);
+    expect(image.nativeElement.src).toBe(course.iconUrl);
   });
 });
